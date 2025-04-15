@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Kocham Cię Filon!</title>
+  <style>
+    body {
+      background: linear-gradient(#ffe6f0, #fff);
+      font-family: 'Comic Sans MS', cursive;
+      text-align: center;
+      padding-top: 80px;
+      overflow: hidden;
+    }
+    h1 {
+      font-size: 3em;
+      color: crimson;
+      animation: typewriter 4s steps(30) 1s 1 normal both;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 3px solid;
+      width: 0;
+      margin: 0 auto;
+    }
+    @keyframes typewriter {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(45deg);
+      animation: float 10s linear infinite;
+    }
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+    }
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+    .heart::after {
+      top: 0;
+      left: -10px;
+    }
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(45deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-1000px) rotate(45deg);
+        opacity: 0;
+      }
+    }
+    button {
+      margin-top: 40px;
+      padding: 12px 24px;
+      font-size: 1.2em;
+      border: none;
+      background-color: #e75480;
+      color: white;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background-color: #c7436f;
+    }
+    iframe {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Kocham Cię Filon!</h1>
+  <button onclick="playMusic()">Zagraj Wodeckiego</button>
+  <br />
+  <iframe id="musicFrame" width="560" height="315" style="display: none;"
+    src="https://www.youtube.com/embed/LC-0ieNIosA"
+    title="Wodecki - Lubię wracać tam gdzie byłem"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen>
+  </iframe>
+
+  <script>
+    function playMusic() {
+      const frame = document.getElementById("musicFrame");
+      frame.style.display = "block";
+    }
+
+    // Tworzy serduszka
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.top = "100vh";
+      heart.style.animationDuration = (Math.random() * 5 + 5) + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 10000);
+    }, 300);
+  </script>
+</body>
+</html>
